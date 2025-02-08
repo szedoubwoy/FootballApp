@@ -11,7 +11,7 @@ public class LeagueMapper {
         return LeagueDTO.builder()
                 .id(league.getId())
                 .name(league.getName())
-                .country(league.getCountry().getName())
+                .countryName(league.getCountry().getName())
                 .apiId(league.getApiId())
                 .build();
     }

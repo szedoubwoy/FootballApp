@@ -1,36 +1,26 @@
 package com.szedou.domain.mapper;
 
 import com.szedou.domain.dto.MatchDTO;
-import com.szedou.domain.dto.TeamDTO;
 import com.szedou.domain.model.Match;
-import com.szedou.domain.model.Team;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
+@RequiredArgsConstructor
 public class MatchMapper {
+
+    private final TeamMapper teamMapper;
 
     public MatchDTO toDTO(Match match) {
         return MatchDTO.builder()
                 .id(match.getId())
-                .homeTeam(TeamDTO.builder()
-                        .id(match.getHomeTeam().getId())
-                        .name(match.getHomeTeam().getName())
-                        .shortName(match.getHomeTeam().getShortName())
-                        .country(match.getHomeTeam().getCountry().getName())
-                        .build())
-                .awayTeam(TeamDTO.builder()
-                        .id(match.getAwayTeam().getId())
-                        .name(match.getAwayTeam().getName())
-                        .shortName(match.getAwayTeam().getShortName())
-                        .country(match.getAwayTeam().getCountry().getName())
-                        .build())
+                .homeTeam(teamMapper.toDTO(match.getHomeTeam()))
+                .awayTeam(teamMapper.toDTO(match.getAwayTeam()))
                 .homeScoreHT(match.getHomeScoreHT())
                 .awayScoreHT(match.getAwayScoreHT())
                 .homeScoreFT(match.getHomeScoreFT())
                 .awayScoreFT(match.getAwayScoreFT())
-                .matchDate(match.getMatchDate().toString())
+                .matchDate(match.getMatchDate())
                 .referee(match.getReferee())
                 .season(match.getSeason())
                 .isLamak(match.isLamak())
@@ -40,15 +30,13 @@ public class MatchMapper {
     public Match toEntity(MatchDTO matchDTO) {
         Match match = new Match();
         match.setId(matchDTO.getId());
-        match.setHomeTeam(new Team());
-        match.getHomeTeam().setId(matchDTO.getHomeTeam().getId());
-        match.setAwayTeam(new Team());
-        match.getAwayTeam().setId(matchDTO.getAwayTeam().getId());
+        match.setHomeTeam(teamMapper.toEntity(matchDTO.getHomeTeam()));
+        match.setAwayTeam(teamMapper.toEntity(matchDTO.getAwayTeam()));
         match.setHomeScoreHT(matchDTO.getHomeScoreHT());
         match.setAwayScoreHT(matchDTO.getAwayScoreHT());
         match.setHomeScoreFT(matchDTO.getHomeScoreFT());
         match.setAwayScoreFT(matchDTO.getAwayScoreFT());
-        match.setMatchDate(LocalDateTime.parse(matchDTO.getMatchDate()));
+        match.setMatchDate(matchDTO.getMatchDate());
         match.setReferee(matchDTO.getReferee());
         match.setSeason(matchDTO.getSeason());
         match.setLamak(matchDTO.isLamak());

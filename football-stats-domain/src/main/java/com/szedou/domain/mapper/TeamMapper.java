@@ -6,13 +6,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TeamMapper {
-
     public TeamDTO toDTO(Team team) {
         return TeamDTO.builder()
                 .id(team.getId())
                 .name(team.getName())
                 .shortName(team.getShortName())
-                .country(team.getCountry().getName())
+                .countryName(team.getCountry().getName())
                 .build();
     }
 
