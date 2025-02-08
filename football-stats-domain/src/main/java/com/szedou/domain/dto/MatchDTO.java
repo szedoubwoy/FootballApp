@@ -3,6 +3,8 @@ package com.szedou.domain.dto;
 import lombok.Builder;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 public class MatchDTO {
@@ -13,7 +15,7 @@ public class MatchDTO {
     private int awayScoreHT;
     private int homeScoreFT;
     private int awayScoreFT;
-    private String matchDate;
+    private LocalDateTime matchDate;
     private String referee;
     private String season;
     private boolean isLamak;
