@@ -1,6 +1,7 @@
 package com.szedou.domain.mapper;
 
 import com.szedou.domain.dto.MatchDTO;
+import com.szedou.domain.dto.TeamDTO;
 import com.szedou.domain.model.Match;
 import com.szedou.domain.model.Team;
 import org.springframework.stereotype.Component;
