@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SeasonMapper {
+
     public SeasonDTO toDTO(Season season) {
         return SeasonDTO.builder()
                 .id(season.getId())
@@ -13,5 +14,15 @@ public class SeasonMapper {
                 .startDate(season.getStartDate())
                 .endDate(season.getEndDate())
                 .build();
+    }
+
+    public Season toEntity(SeasonDTO seasonDTO) {
+        Season season = new Season();
+        season.setId(seasonDTO.getId());
+        season.setName(seasonDTO.getName());
+        season.setStartDate(seasonDTO.getStartDate());
+        season.setEndDate(seasonDTO.getEndDate());
+        // Set other fields as necessary
+        return season;
     }
 }

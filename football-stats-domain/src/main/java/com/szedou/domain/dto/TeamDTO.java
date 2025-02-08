@@ -9,5 +9,5 @@ public class TeamDTO {
     private Long id;
     private String name;
     private String shortName;
-    private String countryName;
+    private String country;
 }

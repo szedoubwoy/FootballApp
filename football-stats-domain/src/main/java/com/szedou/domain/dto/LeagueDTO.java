@@ -8,6 +8,6 @@ import lombok.Data;
 public class LeagueDTO {
     private Long id;
     private String name;
-    private String countryName;
+    private String country;
     private String apiId;
 }

@@ -43,7 +43,13 @@ public class MatchService {
                 .collect(Collectors.toList());
     }
 
-    // Add this method for scheduler
+    @Transactional(readOnly = true)
+    public MatchDTO getLamakDetails(Long matchId) {
+        Match match = matchRepository.findById(matchId)
+                .orElseThrow(() -> new IllegalArgumentException("Match not found with id: " + matchId));
+        return matchMapper.toDTO(match);
+    }
+
     @Transactional
     public void saveMatches(List<Match> matches) {
         log.info("Saving {} matches", matches.size());

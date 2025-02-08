@@ -36,3 +36,5 @@ export const fetchCountries = () => api.get('/countries').then(res => res.data);
 export const fetchLeagues = (countryId: number) => api.get(`/countries/${countryId}/leagues`).then(res => res.data);
 export const fetchLamaks = (leagueId: number, season: string) =>
   api.get(`/leagues/${leagueId}/lamaks`, { params: { season }}).then(res => res.data);
+export const fetchMatchDetails = (matchId: number) =>
+  api.get(`/matches/${matchId}`).then(res => res.data);
