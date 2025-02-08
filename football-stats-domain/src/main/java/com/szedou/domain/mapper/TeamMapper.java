@@ -11,7 +11,7 @@ public class TeamMapper {
                 .id(team.getId())
                 .name(team.getName())
                 .shortName(team.getShortName())
-                .countryName(team.getCountry().getName())
+                .country(team.getCountry().getName())
                 .build();
     }
 
