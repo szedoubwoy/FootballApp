@@ -19,8 +19,7 @@
         <dependency>
             <groupId>com.szedou</groupId>
             <artifactId>football-stats-api</artifactId>
-            <version>1.0-0</version>
-            <scope>compile</scope>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
