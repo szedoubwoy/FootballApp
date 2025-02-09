@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class League {
     @JoinColumn(name = "country_id")
     private Country country;
 
-    private String apiId; // ID from external API
+    private String apiId;
 
     @OneToMany(mappedBy = "league")
     private List<Match> matches;

@@ -5,20 +5,10 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/domain/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/api2/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/api/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/common/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/domain/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/scheduler/pom.xml" />
-      </set>
-    </option>
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

@@ -50,5 +50,6 @@ public class FootballApiClient {
 
     private List<Match> parseMatches(String response) {
         // Implementation of response parsing
+        return List.of();
     }
 }

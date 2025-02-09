@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.util.List;
 
@@ -19,14 +19,9 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    private String code; // ISO country code
-
+    private String code;
     private String flagUrl;
-
     @OneToMany(mappedBy = "country")
     private List<League> leagues;
 }

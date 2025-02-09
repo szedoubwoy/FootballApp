@@ -1,16 +1,14 @@
 package com.szedou.domain.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Formula;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
-
 
 @Entity
 @Table(name = "matches")

@@ -5,11 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.Set;
-
 
 @Entity
 @Table(name = "seasons")
@@ -23,7 +22,7 @@ public class Season {
     private Long id;
 
     @Column(nullable = false)
-    private String name; // e.g., "2023/24"
+    private String name;
 
     private LocalDate startDate;
     private LocalDate endDate;
