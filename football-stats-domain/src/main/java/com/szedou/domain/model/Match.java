@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Formula;
-import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
@@ -29,9 +28,16 @@ public class Match {
     @JoinColumn(name = "away_team_id")
     private Team awayTeam;
 
+    @Column(name = "home_score_ht")
     private Integer homeScoreHT;
+
+    @Column(name = "away_score_ht")
     private Integer awayScoreHT;
+
+    @Column(name = "home_score_ft")
     private Integer homeScoreFT;
+
+    @Column(name = "away_score_ft")  // This is what should match your database
     private Integer awayScoreFT;
 
     @Column(name = "match_date")
