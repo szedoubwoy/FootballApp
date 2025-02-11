@@ -12,6 +12,7 @@ public class TeamMapper {
                 .name(team.getName())
                 .shortName(team.getShortName())
                 .country(team.getCountry().getName())
+                .league(team.getLeague() != null ? team.getLeague().getName() : null)
                 .build();
     }
 
@@ -20,7 +21,6 @@ public class TeamMapper {
         team.setId(teamDTO.getId());
         team.setName(teamDTO.getName());
         team.setShortName(teamDTO.getShortName());
-        // Set other fields as necessary
         return team;
     }
 }

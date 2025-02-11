@@ -37,7 +37,7 @@ public class Match {
     @Column(name = "home_score_ft")
     private Integer homeScoreFT;
 
-    @Column(name = "away_score_ft")  // This is what should match your database
+    @Column(name = "away_score_ft")
     private Integer awayScoreFT;
 
     @Column(name = "match_date")
