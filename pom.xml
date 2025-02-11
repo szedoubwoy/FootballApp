@@ -17,7 +17,6 @@
         <module>football-stats-common</module>
         <module>football-stats-domain</module>
         <module>football-stats-api</module>
-        <module>football-stats-scheduler</module>
     </modules>
 
     <dependencyManagement>
