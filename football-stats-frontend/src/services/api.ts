@@ -4,6 +4,12 @@ const api = axios.create({
   baseURL: '/api/v1'
 });
 
+export interface Country {
+  id: number;
+  name: string;
+  flagUrl?: string;
+}
+
 export interface Match {
   id: number;
   homeTeam: Team;
@@ -32,7 +38,7 @@ export interface League {
   apiId: string;
 }
 
-export const fetchCountries = () => api.get('/countries').then(res => res.data);
+export const fetchCountries = () => api.get<Country[]>('/countries').then(res => res.data);
 export const fetchLeagues = (countryId: number) => api.get(`/countries/${countryId}/leagues`).then(res => res.data);
 export const fetchLamaks = (leagueId: number, season: string) =>
   api.get(`/leagues/${leagueId}/lamaks`, { params: { season }}).then(res => res.data);

@@ -3,9 +3,7 @@ CREATE TABLE teams (
     name VARCHAR(255) NOT NULL,
     short_name VARCHAR(50),
     country_id BIGINT,
-    league_id BIGINT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (country_id) REFERENCES countries(id)
-    FOREIGN KEY (league_id) REFERENCES leagues(id)
 );

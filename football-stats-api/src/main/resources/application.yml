@@ -1,6 +1,11 @@
 server:
   port: 8080
 
+football:
+  api:
+    url: "https://apifootball.com/api"
+    key: "your-api-key"
+
 spring:
   application:
     name: football-stats-api
