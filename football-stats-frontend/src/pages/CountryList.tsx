@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import * as api from '../services/api';
+import * as api from '../services/api.ts';
 
 const CountryList = () => {
   const [countries, setCountries] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Row, Col, Table } from 'react-bootstrap';
-import * as api from '../services/api';
+import * as api from '../services/api.ts';
 
 const MatchDetails = () => {
   const { matchId } = useParams();

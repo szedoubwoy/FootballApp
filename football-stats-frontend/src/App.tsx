@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import Navigation from './components/Navigation';
-import CountryList from './pages/CountryList';
-import LeagueList from './pages/LeagueList';
-import LamakList from './pages/LamakList';
-import TeamLamaks from './pages/TeamLamaks';
-import MatchDetails from './pages/MatchDetails';
+import Navigation from './components/Navigation.tsx';
+import CountryList from './pages/CountryList.tsx';
+import LeagueList from './pages/LeagueList.tsx';
+import LamakList from './pages/LamakList.tsx';
+// import TeamLamaks from './pages/TeamLamaks.tsx';
+import MatchDetails from './pages/MatchDetails.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<CountryList />} />
           <Route path="/country/:countryId/leagues" element={<LeagueList />} />
           <Route path="/league/:leagueId/lamaks" element={<LamakList />} />
-          <Route path="/team/:teamId/lamaks" element={<TeamLamaks />} />
+
           <Route path="/match/:matchId" element={<MatchDetails />} />
         </Routes>
       </Container>
