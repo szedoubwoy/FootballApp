@@ -1,13 +1,12 @@
 package com.szedou.domain.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.Id;
-
-import java.util.List;
 
 @Entity
 @Table(name = "countries")
@@ -17,11 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Country {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String code;
-    private String flagUrl;
-    @OneToMany(mappedBy = "country")
-    private List<League> leagues;
+    private String countryId; // Changed to String to match API response
+
+    private String countryName;
+    private String countryLogo;
 }

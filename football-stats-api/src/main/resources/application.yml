@@ -4,24 +4,32 @@ server:
 football:
   api:
     url: "https://apifootball.com/api"
-    key: "your-api-key"
+    key: "59a76ec5d73ac9f4fbf19f22186443ec753a2a55327d9b5bec41fecd7b1cfafc"
 
 spring:
   application:
     name: football-stats-api
   datasource:
     url: jdbc:mysql://localhost:3306/footballstats_db
-    username: Szedou
-    password: szedouszedou
+    username: ${DB_USERNAME:Szedou}
+    password: ${DB_PASSWORD:szedouszedou}
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: validate
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   flyway:
     enabled: true
+    baseline-on-migrate: true
     locations: classpath:db/migration
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+logging:
+  level:
+    com.szedou: DEBUG

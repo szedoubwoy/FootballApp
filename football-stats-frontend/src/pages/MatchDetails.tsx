@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Card, Row, Col, Table } from 'react-bootstrap';
-import * as api from '../services/api.ts';
+import { footballApi } from '../services/api.ts';
+import { Match } from '../types/models';
 
-const MatchDetails = () => {
-  const { matchId } = useParams();
-  const [match, setMatch] = useState<api.Match | null>(null);
+const MatchDetails: React.FC = () => {
+  const { matchId } = useParams<{ matchId: string }>();
+  const [match, setMatch] = useState<Match | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    api.fetchMatchDetails(Number(matchId))
-      .then(data => {
+    const fetchMatchDetails = async () => {
+      if (!matchId) return;
+
+      try {
+        const data = await footballApi.getMatchDetails(Number(matchId));
         setMatch(data);
-        setLoading(false);
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching match details:', error);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchMatchDetails();
   }, [matchId]);
 
   if (loading) {
@@ -32,7 +38,9 @@ const MatchDetails = () => {
     <Card>
       <Card.Body>
         <Card.Title>{match.homeTeam.name} vs {match.awayTeam.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{new Date(match.matchDate).toLocaleDateString()}</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">
+          {new Date(match.matchDate).toLocaleDateString()}
+        </Card.Subtitle>
         <Row>
           <Col>
             <Table>

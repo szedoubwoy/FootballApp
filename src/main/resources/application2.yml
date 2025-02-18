@@ -3,8 +3,8 @@ server:
 
 football:
   api:
-    url: "https://apifootball.com/api"
-    key: "your-api-key"
+    url: "https://apiv3.apifootball.com"
+    key: "59a76ec5d73ac9f4fbf19f22186443ec753a2a55327d9b5bec41fecd7b1cfafc"
 
 spring:
   datasource:

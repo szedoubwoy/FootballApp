@@ -1,20 +1,16 @@
 package com.szedou.domain.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class CountryDTO {
-    private Long id;
-    private String name;
-    private String code;
-    private String flagUrl;
-    private List<LeagueDTO> leagues;
+    @JsonProperty("country_id")
+    private String countryId;
+
+    @JsonProperty("country_name")
+    private String countryName;
+
+    @JsonProperty("country_logo")
+    private String countryLogo;
 }

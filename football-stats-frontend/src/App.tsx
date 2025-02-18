@@ -7,6 +7,7 @@ import LeagueList from './pages/LeagueList.tsx';
 import LamakList from './pages/LamakList.tsx';
 // import TeamLamaks from './pages/TeamLamaks.tsx';
 import MatchDetails from './pages/MatchDetails.tsx';
+import LeagueView from './pages/LeagueView.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -18,8 +19,8 @@ function App() {
           <Route path="/" element={<CountryList />} />
           <Route path="/country/:countryId/leagues" element={<LeagueList />} />
           <Route path="/league/:leagueId/lamaks" element={<LamakList />} />
-
           <Route path="/match/:matchId" element={<MatchDetails />} />
+          <Route path="/league/:leagueId" element={<LeagueView />} />
         </Routes>
       </Container>
     </BrowserRouter>
