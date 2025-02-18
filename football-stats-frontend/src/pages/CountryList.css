@@ -1,0 +1,29 @@
+.country-card {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.country-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.country-flag-container {
+    width: 100px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.country-flag {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    margin: 0;
+}
