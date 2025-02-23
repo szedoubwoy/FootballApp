@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Table, Badge, Pagination } from 'react-bootstrap';
 import { footballApi } from '../services/api.ts';
-import { ApiMatch } from '../types/api-types.ts';
+import { ApiMatch, ApiTeamDetails } from '../types/api-type.ts';
+import { formatDateTime } from '../utils/dateFormatter.ts';
 import './TeamDetails.css';
 
 const TeamDetails: React.FC = () => {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
-  const [team, setTeam] = useState<any>(null);
+  const [team, setTeam] = useState<ApiTeamDetails | null>(null);
   const [matches, setMatches] = useState<ApiMatch[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -71,17 +72,17 @@ const TeamDetails: React.FC = () => {
         <Card.Body>
           <div className="team-info">
             <img
-              src={team.team_badge}
-              alt={team.team_name}
+              src={team?.team_badge}
+              alt={team?.team_name}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.src = '/placeholder-team.png';
               }}
             />
             <div className="team-details">
-              <h2>{team.team_name}</h2>
-              <p>{team.team_country}</p>
-              <p>Coach: {team.coach_name}</p>
+              <h2>{team?.team_name}</h2>
+              <p>{team?.team_country}</p>
+              <p>Coach: {team?.coach_name}</p>
             </div>
           </div>
         </Card.Body>

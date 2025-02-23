@@ -105,3 +105,13 @@ export interface ApiHeadToHead {
   firstTeam_lastResults: ApiMatch[];
   secondTeam_lastResults: ApiMatch[];
 }
+
+export interface ApiTeamDetails {
+  team_key: string;
+  team_name: string;
+  team_country: string;
+  team_badge: string;
+  coaches: {
+    coach_name: string;
+  }[];
+}

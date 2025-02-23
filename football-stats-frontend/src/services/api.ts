@@ -57,6 +57,13 @@ const mapMatch = (apiMatch: ApiMatch): Match => ({
   }
 });
 
+const mapTeamDetails = (apiTeamDetails: ApiTeamDetails) => ({
+  teamId: apiTeamDetails.team_key,
+  teamName: apiTeamDetails.team_name,
+  teamCountry: apiTeamDetails.team_country,
+  teamBadge: apiTeamDetails.team_badge,
+  coachName: apiTeamDetails.coaches[0]?.coach_name
+});
 
 export const footballApi = {
   getCountries: async (): Promise<Country[]> => {
@@ -146,6 +153,49 @@ export const footballApi = {
       throw error;
     }
   },
+   getTeamDetails: async (teamId: string): Promise<ApiTeamDetails> => {
+      try {
+        const response = await apiClient.get('', {
+          params: {
+            action: 'get_teams',
+            team_id: teamId
+          }
+        });
+
+        console.log('getTeamDetails response:', response.data); // Log response data
+
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          return mapTeamDetails(response.data[0]);
+        }
+
+        throw new Error('Invalid response format');
+      } catch (error) {
+        console.error('Error fetching team details:', error);
+        throw error;
+      }
+    },
+
+    getTeamLamakMatches: async (teamId: string): Promise<ApiMatch[]> => {
+      try {
+        const response = await apiClient.get('', {
+          params: {
+            action: 'get_events',
+            team_id: teamId
+          }
+        });
+
+        console.log('getTeamLamakMatches response:', response.data); // Log response data
+
+        if (Array.isArray(response.data)) {
+          return response.data;
+        }
+
+        throw new Error('Invalid response format');
+      } catch (error) {
+        console.error('Error fetching team lamak matches:', error);
+        throw error;
+      }
+    },
   getHeadToHead: async (team1Id: string, team2Id: string): Promise<ApiHeadToHead> => {
       try {
         const response = await apiClient.get('', {
