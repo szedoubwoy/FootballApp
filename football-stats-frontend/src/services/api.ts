@@ -153,49 +153,51 @@ export const footballApi = {
       throw error;
     }
   },
-   getTeamDetails: async (teamId: string): Promise<ApiTeamDetails> => {
-      try {
-        const response = await apiClient.get('', {
-          params: {
-            action: 'get_teams',
-            team_id: teamId
-          }
-        });
+     getTeamDetails: async (teamId: string): Promise<ApiTeamDetails> => {
+       try {
+         const response = await apiClient.get('', {
+           params: {
+             action: 'get_teams',
+             team_id: teamId
+           }
+         });
 
-        console.log('getTeamDetails response:', response.data); // Log response data
+         console.log('getTeamDetails response:', response.data); // Log response data
 
-        if (Array.isArray(response.data) && response.data.length > 0) {
-          return mapTeamDetails(response.data[0]);
-        }
+         if (Array.isArray(response.data) && response.data.length > 0) {
+           return mapTeamDetails(response.data[0]);
+         }
 
-        throw new Error('Invalid response format');
-      } catch (error) {
-        console.error('Error fetching team details:', error);
-        throw error;
-      }
-    },
+         throw new Error('Invalid response format');
+       } catch (error) {
+         console.error('Error fetching team details:', error);
+         throw error;
+       }
+     },
 
-    getTeamLamakMatches: async (teamId: string): Promise<ApiMatch[]> => {
-      try {
-        const response = await apiClient.get('', {
-          params: {
-            action: 'get_events',
-            team_id: teamId
-          }
-        });
+     getTeamLamakMatches: async (teamId: string): Promise<ApiMatch[]> => {
+       try {
+         const response = await apiClient.get('', {
+           params: {
+             action: 'get_events',
+             team_id: teamId,
+             from: '2022-01-01', // Example date, you might want to replace it with actual date range
+             to: '2025-12-31' // Example date, you might want to replace it with actual date range
+           }
+         });
 
-        console.log('getTeamLamakMatches response:', response.data); // Log response data
+         console.log('getTeamLamakMatches response:', response.data); // Log response data
 
-        if (Array.isArray(response.data)) {
-          return response.data;
-        }
+         if (Array.isArray(response.data)) {
+           return response.data;
+         }
 
-        throw new Error('Invalid response format');
-      } catch (error) {
-        console.error('Error fetching team lamak matches:', error);
-        throw error;
-      }
-    },
+         throw new Error('Invalid response format');
+       } catch (error) {
+         console.error('Error fetching team lamak matches:', error);
+         throw error;
+       }
+     },
   getHeadToHead: async (team1Id: string, team2Id: string): Promise<ApiHeadToHead> => {
       try {
         const response = await apiClient.get('', {
