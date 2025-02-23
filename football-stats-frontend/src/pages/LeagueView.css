@@ -2,19 +2,88 @@
     padding: 2rem 0;
 }
 
+.league-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.header-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.league-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.league-title h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.league-subtitle {
+    color: #666;
+    font-size: 0.9rem;
+}
+
 .match-card {
-    transition: transform 0.2s;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 .match-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .match-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
     margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.match-header-match-details {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   margin-bottom: 1rem;
+   padding-bottom: 1rem;
+}
+
+.match-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.match-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.match-round {
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.match-league {
+    color: #666;
+    font-size: 0.85rem;
+    font-style: italic;
 }
 
 .match-teams {
@@ -39,6 +108,11 @@
     object-fit: contain;
 }
 
+.team span {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 .match-scores {
     display: flex;
     flex-direction: column;
@@ -57,7 +131,55 @@
 }
 
 .match-details {
-    margin-top: 1rem;
-    text-align: center;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.venue-info, .referee-info {
     color: #666;
+    font-size: 0.9rem;
+}
+
+.btn-link {
+    text-decoration: none;
+    padding: 0;
+    color: #666;
+}
+
+.btn-link:hover {
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .league-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .league-title h2 {
+        font-size: 1.25rem;
+    }
+
+    .league-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .team span {
+        font-size: 0.8rem;
+    }
+
+    .score {
+        font-size: 1rem;
+    }
+
+    .score.ht {
+        font-size: 0.8rem;
+    }
+
+    .match-details {
+        font-size: 0.8rem;
+    }
 }

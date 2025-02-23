@@ -126,5 +126,40 @@ export const footballApi = {
         console.error('Error fetching matches:', error);
         throw error;
       }
+    },
+  getMatchDetails: async (matchId: string): Promise<ApiMatch> => {
+    try {
+      const response = await apiClient.get('', {
+        params: {
+          action: 'get_events',
+          match_id: matchId
+        }
+      });
+
+      if (Array.isArray(response.data) && response.data.length > 0) {
+        return response.data[0];
+      }
+
+      throw new Error('Match not found');
+    } catch (error) {
+      console.error('Error fetching match details:', error);
+      throw error;
+    }
+  },
+  getHeadToHead: async (team1Id: string, team2Id: string): Promise<ApiHeadToHead> => {
+      try {
+        const response = await apiClient.get('', {
+          params: {
+            action: 'get_H2H',
+            firstTeamId: team1Id,
+            secondTeamId: team2Id
+          }
+        });
+
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching head to head:', error);
+        throw error;
+      }
     }
 };

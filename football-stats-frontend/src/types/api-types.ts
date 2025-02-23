@@ -40,6 +40,9 @@ export interface ApiMatch {
   league_logo: string;
   country_logo: string;
   league_year: string;
+  match_round?: string;
+  fk_stage_key: string;
+  stage_name?: string;
 }
 
 export interface ApiGoalscorer {
@@ -62,4 +65,43 @@ export interface ApiStatistic {
   type: string;
   home: string;
   away: string;
+}
+
+export interface ApiCard {
+  time: string;
+  home_fault: string;
+  away_fault: string;
+  card: string;
+  info: string;
+  score_info_time: string;
+}
+
+export interface ApiSubstitution {
+  time: string;
+  substitution: string;
+}
+
+export interface ApiStatistic {
+  type: string;
+  home: string;
+  away: string;
+}
+
+export interface ApiLineupPlayer {
+  lineup_player: string;
+  lineup_number: string;
+  lineup_position: string;
+  player_key: string;
+}
+
+export interface ApiTeamLineup {
+  starting_lineups: ApiLineupPlayer[];
+  substitutes: ApiLineupPlayer[];
+  coach: ApiLineupPlayer[];
+}
+
+export interface ApiHeadToHead {
+  firstTeam_VS_secondTeam: ApiMatch[];
+  firstTeam_lastResults: ApiMatch[];
+  secondTeam_lastResults: ApiMatch[];
 }
