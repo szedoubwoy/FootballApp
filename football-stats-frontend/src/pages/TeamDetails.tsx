@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Card, Table, Badge, Pagination } from 'react-bootstrap';
+import { Container, Row, Col, Card, Badge, Pagination } from 'react-bootstrap';
 import { footballApi } from '../services/api.ts';
 import { ApiMatch, ApiTeamDetails } from '../types/api-types.ts';
 import { formatDateTime } from '../utils/dateFormatter.ts';

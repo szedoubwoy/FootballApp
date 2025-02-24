@@ -135,69 +135,79 @@ export const footballApi = {
       }
     },
   getMatchDetails: async (matchId: string): Promise<ApiMatch> => {
-    try {
-      const response = await apiClient.get('', {
-        params: {
-          action: 'get_events',
-          match_id: matchId
+      try {
+        const response = await apiClient.get('', {
+          params: {
+            action: 'get_events',
+            match_id: matchId
+          }
+        });
+
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          return response.data[0];
         }
-      });
 
-      if (Array.isArray(response.data) && response.data.length > 0) {
-        return response.data[0];
+        throw new Error('Match not found');
+      } catch (error) {
+        console.error('Error fetching match details:', error);
+        throw error;
       }
+    },
+      getTeamDetails: async (teamId: string): Promise<ApiTeamDetails> => {
+         try {
+           const response = await apiClient.get('', {
+             params: {
+               action: 'get_teams',
+               team_id: teamId
+             }
+           });
 
-      throw new Error('Match not found');
-    } catch (error) {
-      console.error('Error fetching match details:', error);
-      throw error;
-    }
-  },
-     getTeamDetails: async (teamId: string): Promise<ApiTeamDetails> => {
-       try {
-         const response = await apiClient.get('', {
-           params: {
-             action: 'get_teams',
-             team_id: teamId
+           console.log('getTeamDetails response:', response.data); // Log response data
+
+           if (Array.isArray(response.data) && response.data.length > 0) {
+             return mapTeamDetails(response.data[0]);
            }
-         });
 
-         console.log('getTeamDetails response:', response.data); // Log response data
-
-         if (Array.isArray(response.data) && response.data.length > 0) {
-           return mapTeamDetails(response.data[0]);
+           throw new Error('Invalid response format');
+         } catch (error) {
+           console.error('Error fetching team details:', error);
+           throw error;
          }
+       },
 
-         throw new Error('Invalid response format');
-       } catch (error) {
-         console.error('Error fetching team details:', error);
-         throw error;
-       }
-     },
+       getTeamLamakMatches: async (teamId: string): Promise<ApiMatch[]> => {
+         try {
+           const response = await apiClient.get('', {
+             params: {
+               action: 'get_events',
+               team_id: teamId,
+               from: '2022-01-01', // Example date, you might want to replace it with actual date range
+               to: '2025-12-31' // Example date, you might want to replace it with actual date range
+             }
+           });
 
-     getTeamLamakMatches: async (teamId: string): Promise<ApiMatch[]> => {
-       try {
-         const response = await apiClient.get('', {
-           params: {
-             action: 'get_events',
-             team_id: teamId,
-             from: '2022-01-01', // Example date, you might want to replace it with actual date range
-             to: '2025-12-31' // Example date, you might want to replace it with actual date range
+           console.log('getTeamLamakMatches response:', response.data); // Log response data
+
+           if (Array.isArray(response.data)) {
+             // Filter matches where one team wins halftime and the other wins full time
+             return response.data.filter(match => {
+               const homeHT = parseInt(match.match_hometeam_halftime_score);
+               const awayHT = parseInt(match.match_awayteam_halftime_score);
+               const homeFT = parseInt(match.match_hometeam_score);
+               const awayFT = parseInt(match.match_awayteam_score);
+               return (
+                 (homeHT > awayHT && homeFT < awayFT) ||
+                 (homeHT < awayHT && homeFT > awayFT)
+               );
+             });
            }
-         });
 
-         console.log('getTeamLamakMatches response:', response.data); // Log response data
-
-         if (Array.isArray(response.data)) {
-           return response.data;
+           throw new Error('Invalid response format');
+         } catch (error) {
+           console.error('Error fetching team lamak matches:', error);
+           throw error;
          }
-
-         throw new Error('Invalid response format');
-       } catch (error) {
-         console.error('Error fetching team lamak matches:', error);
-         throw error;
-       }
-     },
+       },
   getHeadToHead: async (team1Id: string, team2Id: string): Promise<ApiHeadToHead> => {
       try {
         const response = await apiClient.get('', {
